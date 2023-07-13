@@ -1,0 +1,19 @@
+name: 'PingOne DaVinci Flow Linter'
+description: 'Validate flows, providing warnings and errors'
+inputs:
+  ignore-warnings:  # id of input
+    description: 'Allow warnings to pass'
+    required: true
+    default: 'false'
+outputs:
+  pass:
+    description: 'True, False if warnings errors found'
+  warnings:
+    description: 'Warnings found'
+  errors:
+    description: 'Warnings found'
+  raw-results:
+    description: 'Complete results from flow-linter'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
