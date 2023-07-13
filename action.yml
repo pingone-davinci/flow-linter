@@ -4,7 +4,7 @@ inputs:
   flows:
     description: 'List of flows'
     required: true
-  ignore-warnings:  # id of input
+  ignore-warnings:
     description: 'Allow warnings to pass'
     required: true
     default: 'false'

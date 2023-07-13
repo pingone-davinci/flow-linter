@@ -22,13 +22,6 @@ try {
   // // Get the JSON webhook payload for the event that triggered the workflow
   const context = JSON.stringify(github.context, undefined, 2)
   console.log(`The event payload: ${context}`);
-
-
-  // git fetch origin ${{ github.base_ref }}
-  // changed_files=$(git diff --name-only ${{ github.base_ref }}...${{ github.sha }})
-  // echo "Changed Files:"
-  // echo "$changed_files"
-
 } catch (error) {
   core.setFailed(error.message);
 }
