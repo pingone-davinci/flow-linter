@@ -9801,6 +9801,7 @@ try {
 
   // Debug
   console.log(`Running with ignoreWarnings = `, ignoreWarnings);
+  console.log("About to lint flow");
 
   core.setOutput("pass", true);
   core.setOutput("warnings", "Not Set");
