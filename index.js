@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const lintFlow = require('./lintFlow');
 
 try {
   // Get the inputs
@@ -10,6 +11,10 @@ try {
   console.log(`Running with flows = `, flows);
   console.log(`Running with ignoreWarnings = `, ignoreWarnings);
   console.log("About to lint flow");
+
+  const rawResults = lintFlow(false, flows);
+
+  console.log(rawResults);
 
   core.setOutput("pass", true);
   core.setOutput("warnings", "Not Set");

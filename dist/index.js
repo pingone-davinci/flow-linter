@@ -1,6 +1,55 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 1506:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const fetch = __nccwpck_require__(563);
+
+let lintFlow = async function (ignoreWarnings, flowFile) {
+  const flow = require(flowFile);
+  console.log("Inside of lintFlow()")
+
+  const url = 'http://35.167.90.132:8000/linter/lint-flow-json';
+  const requestBody = {
+    key1: 'value1',
+    key2: 'value2',
+  };
+
+  // console.log(flow);
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ flowJSON: flow }),
+  };
+
+  try {
+    const response = await fetch(url, requestOptions);
+
+    // console.log(response);
+    if (response.status === 200) {
+      return await response.json();
+    }
+
+  } catch (err) {
+    throw err;
+  }
+  // .then(response => response.json())
+  // .then(data => {
+  //   console.log('Response:', data);
+  //   // Handle the response data
+  // })
+  // .catch(error => {
+  //   console.error('Error:', error);
+  //   // Handle the error
+  // });
+
+};
+
+module.exports = lintFlow;
+
+/***/ }),
+
 /***/ 9915:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -9794,6 +9843,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(9837);
 const github = __nccwpck_require__(4676);
+const lintFlow = __nccwpck_require__(1506);
 
 try {
   // Get the inputs
@@ -9804,6 +9854,10 @@ try {
   console.log(`Running with flows = `, flows);
   console.log(`Running with ignoreWarnings = `, ignoreWarnings);
   console.log("About to lint flow");
+
+  const rawResults = lintFlow(false, flows);
+
+  console.log(rawResults);
 
   core.setOutput("pass", true);
   core.setOutput("warnings", "Not Set");

@@ -20,6 +20,7 @@
   "homepage": "https://github.com/pingone-davinci/flow-linter#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "node-fetch": "^2.6.12"
   }
 }
