@@ -6,7 +6,7 @@
 
 const fetch = __nccwpck_require__(563);
 
-let lintFlow = async function (ignoreWarnings, flowFile) {
+let lintFlow = function (ignoreWarnings, flowFile) {
   const flow = require(flowFile);
   console.log("Inside of lintFlow()")
 
@@ -25,7 +25,7 @@ let lintFlow = async function (ignoreWarnings, flowFile) {
 
   let rawResult = {};
 
-  await fetch(url, requestOptions)
+  fetch(url, requestOptions)
     .then(response => response.json())
     .then(data => {
       // console.log('Response:', data);

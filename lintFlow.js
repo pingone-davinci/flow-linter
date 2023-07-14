@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-let lintFlow = async function (ignoreWarnings, flowFile) {
+let lintFlow = function (ignoreWarnings, flowFile) {
   const flow = require(flowFile);
   console.log("Inside of lintFlow()")
 
@@ -19,7 +19,7 @@ let lintFlow = async function (ignoreWarnings, flowFile) {
 
   let rawResult = {};
 
-  await fetch(url, requestOptions)
+  fetch(url, requestOptions)
     .then(response => response.json())
     .then(data => {
       // console.log('Response:', data);
