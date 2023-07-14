@@ -23,27 +23,23 @@ let lintFlow = async function (ignoreWarnings, flowFile) {
     body: JSON.stringify({ flowJSON: flow }),
   };
 
-  try {
-    const response = await fetch(url, requestOptions);
+  let rawResult = {};
 
-    // console.log(response);
-    if (response.status === 200) {
-      return await response.json();
-    }
+  await fetch(url, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      // console.log('Response:', data);
+      rawResult = data;
+      // Handle the response data
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle the error
+    });
 
-  } catch (err) {
-    throw err;
-  }
-  // .then(response => response.json())
-  // .then(data => {
-  //   console.log('Response:', data);
-  //   // Handle the response data
-  // })
-  // .catch(error => {
-  //   console.error('Error:', error);
-  //   // Handle the error
-  // });
+  console.log(rawResult);
 
+  return rawResult;
 };
 
 module.exports = lintFlow;
