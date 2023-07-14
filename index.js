@@ -13,9 +13,7 @@ try {
   console.log(`Running with ignoreWarnings = `, ignoreWarnings);
   console.log("About to lint flow with ", flows);
 
-  (async () => {
-    const rawResults = await lintFlow(false, flows);
-  })
+  const rawResults = lintFlow(false, flows);
 
   console.log("rawResults = ", rawResults);
 
