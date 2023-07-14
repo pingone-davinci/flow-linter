@@ -11,11 +11,11 @@ const lintFlow = require('./lintFlow');
     // Debug
     console.log(`Running with flows = `, flows);
     console.log(`Running with ignoreWarnings = `, ignoreWarnings);
-    console.log("About to lint flow");
+    console.log("About to lint flow with ", flows);
 
     const rawResults = await lintFlow(false, flows);
 
-    console.log(rawResults);
+    console.log("rawResults = ", rawResults);
 
     core.setOutput("pass", true);
     core.setOutput("warnings", "Not Set");
