@@ -1,31 +1,28 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const lintFlow = require('./lintFlow');
+const DaVinciLinter = require('pingone-davinci-linter');
 
 
 try {
   // Get the inputs
-  const ignoreWarnings = core.getInput('ignore-warnings');
-  const flows = core.getInput('flows');
+  const flow = core.getInput('flow');
 
   // Debug
-  console.log(`Running with flows = `, flows);
-  console.log(`Running with ignoreWarnings = `, ignoreWarnings);
-  console.log("About to lint flow with ", flows);
+  console.log(`Running with flow = `, flow);
 
-  const rawResults = lintFlow(false, flows);
+  // get linter
+  const linter = new DaVinciLinter();
 
-  console.log("rawResults = ", rawResults);
+  // lint the flow
+  const lintResults = linter.lintFlow(flow);
+
+  console.log("lintResults = ", lintResults);
 
   core.setOutput("pass", true);
   core.setOutput("warnings", "Not Set");
   core.setOutput("errors", "Not Set");
   core.setOutput("raw-results", rawResults);
 
-
-  // const time = (new Date()).toTimeString();
-  // core.setOutput("time", time);
-  // // Get the JSON webhook payload for the event that triggered the workflow
   const context = JSON.stringify(github.context, undefined, 2)
   console.log(`The event payload: ${context}`);
 } catch (error) {
