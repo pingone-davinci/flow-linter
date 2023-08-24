@@ -5,26 +5,25 @@ const DaVinciLinter = require('pingone-davinci-linter');
 
 try {
   // Get the inputs
-  const flow = core.getInput('flow');
-
-  // Debug
-  console.log(`Running with flow = `, flow);
+  // const flow = core.getInput('flow');
+  const flow = require('./tests/flow.json');
 
   // get linter
   const linter = new DaVinciLinter();
 
   // lint the flow
-  const lintResults = linter.lintFlow(flow);
+  const lintResults = linter.lintFlow({ flow });
 
   console.log("lintResults = ", lintResults);
 
-  core.setOutput("pass", true);
-  core.setOutput("warnings", "Not Set");
-  core.setOutput("errors", "Not Set");
-  core.setOutput("raw-results", rawResults);
+  const lintResult = lintResults?.lintResults[0]
 
-  const context = JSON.stringify(github.context, undefined, 2)
-  console.log(`The event payload: ${context}`);
+  core.setOutput("pass", lintResult.pass);
+  core.setOutput("errorCount", lintResult.errorCount);
+  core.setOutput("rule-results", lintResult.ruleResults);
+
+  // const context = JSON.stringify(github.context, undefined, 2)
+  // console.log(`The event payload: ${context}`);
 } catch (error) {
   core.setFailed(error.message);
 }
