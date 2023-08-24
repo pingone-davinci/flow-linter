@@ -5,8 +5,7 @@ const DaVinciLinter = require('pingone-davinci-linter');
 
 try {
   // Get the inputs
-  // const flow = core.getInput('flow');
-  const flow = require('./tests/flow.json');
+  const flow = core.getInput('flow');
 
   // get linter
   const linter = new DaVinciLinter();
@@ -20,7 +19,7 @@ try {
 
   core.setOutput("pass", lintResult.pass);
   core.setOutput("errorCount", lintResult.errorCount);
-  core.setOutput("rule-results", lintResult.ruleResults);
+  core.setOutput("ruleResults", lintResult.ruleResults);
 
   // const context = JSON.stringify(github.context, undefined, 2)
   // console.log(`The event payload: ${context}`);
