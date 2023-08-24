@@ -8,10 +8,10 @@ try {
   const flow = core.getInput('flow');
 
   // get linter
-  const linter = new DaVinciLinter();
+  const linter = new DaVinciLinter({ flow });
 
   // lint the flow
-  const lintResults = linter.lintFlow({ flow });
+  const lintResults = linter.lintFlow();
 
   console.log("lintResults = ", lintResults);
 
